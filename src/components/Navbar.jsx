@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import logoText from '/src/assets/logo-text.png';
 
 const Navbar = () => {
   const [activeTab, setActiveTab] = useState('home');
@@ -42,13 +43,8 @@ const Navbar = () => {
               </ul>
             </div>
 
-            <a href="#home" onClick={() => setActiveTab('home')} className="flex items-center gap-2">
-              <div className="flex h-9 w-9 items-center justify-center rounded-xl text-white font-bold text-sm bg-gradient-to-r from-orange-500 via-pink-500 to-violet-600">
-                DS
-              </div>
-              <span className="text-xl font-bold tracking-tight text-gray-900">
-                DevStack
-              </span>
+            <a href="#home" onClick={() => setActiveTab('home')} className="flex items-center">
+              <img src={logoText} alt="DevStack" className="h-8 w-auto object-contain" />
             </a>
           </div>
 
@@ -66,7 +62,7 @@ const Navbar = () => {
                     {item.label}
                     <span 
                       className={`absolute bottom-0 left-0 h-[2px] bg-gradient-to-r from-orange-500 to-pink-500 transition-all duration-300 ${
-                        activeTab === item.id ? 'w-full' : 'w-0 hover:w-full'
+                        activeTab === item.id ? 'w-full' : 'w-0'
                       }`}
                     />
                   </a>
