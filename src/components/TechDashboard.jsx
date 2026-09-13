@@ -9,8 +9,22 @@ const TechDashboard = () => {
   const themeGradient = "from-orange-500 via-pink-500 to-violet-600";
 
   const svgIcons = {
-    react: <svg viewBox="0 0 24 24" className="h-10 w-10 text-cyan-400 fill-current"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>,
-    vue: <svg viewBox="0 0 24 24" className="h-10 w-10 text-emerald-500 fill-current"><path d="M12 2L2 22h4l6-12 6 12h4L12 2z"/></svg>,
+    react: (
+      <svg viewBox="-11.5 -10.23174 23 20.46348" className="h-10 w-10 text-cyan-400 fill-none stroke-current">
+        <circle cx="0" cy="0" r="2.05" className="fill-current"/>
+        <g stroke="currentColor">
+          <ellipse rx="11" ry="4.2"/>
+          <ellipse rx="11" ry="4.2" transform="rotate(60)"/>
+          <ellipse rx="11" ry="4.2" transform="rotate(120)"/>
+        </g>
+      </svg>
+    ),
+    vue: (
+      <svg viewBox="0 0 256 221" className="h-10 w-10">
+        <path fill="#41B883" d="M204.8 0H256L128 220.8L0 0h51.2L128 132.48L204.8 0z"/>
+        <path fill="#35495E" d="M51.2 0H96l32 55.2L160 0h44.8L128 132.48L51.2 0z"/>
+      </svg>
+    ),
     svelte: <svg viewBox="0 0 24 24" className="h-10 w-10 text-orange-600 fill-current"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5-10-5-10 5z"/></svg>,
     nextjs: <svg viewBox="0 0 24 24" className="h-10 w-10 text-black fill-current"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14.5v-9L17 12l-6 4.5z"/></svg>,
     nodejs: <svg viewBox="0 0 24 24" className="h-10 w-10 text-green-600 fill-current"><path d="M12 2L3 7v10l9 5 9-5V7l-9-5zm-1 14.5v-9L17 12l-6 4.5z"/></svg>,
@@ -27,10 +41,8 @@ const TechDashboard = () => {
     fetch('/technologies.json')
       .then((res) => res.json())
       .then((data) => {
-        setTimeout(() => {
-          setTechList(data);
-          setIsLoading(false);
-        }, 500);
+        setTechList(data);
+        setIsLoading(false);
       })
       .catch(() => {
         setIsLoading(false);
@@ -38,43 +50,30 @@ const TechDashboard = () => {
   }, []);
 
   const handleAddToStack = (tech) => {
-    const exists = selectedStack.some((item) => item.id === tech.id);
-    if (exists) {
-      toast.error(`"${tech.name}" is already in your workspace stack!`, {
-        position: "top-right",
-        autoClose: 3000
-      });
+    const found = selectedStack.find((item) => item.id === tech.id);
+    if (found) {
+      toast.error(`${tech.name} already added`);
       return;
     }
     setSelectedStack([...selectedStack, tech]);
-    toast.success(`Successfully added ${tech.name} to your stack!`, {
-      position: "top-right",
-      autoClose: 2000
-    });
+    toast.success(`${tech.name} added`);
   };
 
   const handleRemoveItem = (tech) => {
-    const updated = selectedStack.filter((item) => item.id !== tech.id);
-    setSelectedStack(updated);
-    toast.info(`Removed ${tech.name} from your stack.`, {
-      position: "top-right",
-      autoClose: 2000
-    });
+    setSelectedStack(selectedStack.filter((item) => item.id !== tech.id));
+    toast.info(`${tech.name} removed`);
   };
 
   const handleClearAll = () => {
     setSelectedStack([]);
-    toast.warn("Cleared all technologies from your workspace.", {
-      position: "top-right",
-      autoClose: 2000
-    });
+    toast.warn("Stack cleared");
   };
 
   if (isLoading) {
     return (
       <div className="flex flex-col justify-center items-center py-32 gap-4">
         <span className="loading loading-spinner loading-lg text-pink-600"></span>
-        <p className="text-sm font-semibold text-gray-500">Loading DevStack components...</p>
+        <p className="text-sm font-semibold text-gray-500">Loading...</p>
       </div>
     );
   }
@@ -82,13 +81,15 @@ const TechDashboard = () => {
     <div id="technologies" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
       
       <div className="mb-10 text-center lg:text-left">
-        <h2 className="text-3xl font-extrabold text-gray-900">
+        <h2 className="text-3xl font-bold text-gray-900">
           Explore the{' '}
           <span className={`bg-gradient-to-r ${themeGradient} bg-clip-text text-transparent`}>
             Technologies
           </span>
         </h2>
-        <p className="mt-2 text-gray-500">Pick technologies to construct your production deployment workflow.</p>
+        <p className="mt-2 text-gray-500">
+          Select technologies and build your own stack.
+        </p>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-8 items-start">
@@ -97,7 +98,14 @@ const TechDashboard = () => {
           {techList.map((tech) => {
             const isAdded = selectedStack.some((item) => item.id === tech.id);
             return (
-              <div key={tech.id} className="bg-white rounded-2xl border border-gray-100 p-6 flex flex-col justify-between shadow-sm hover:shadow-md transition-all relative">
+              <div 
+                key={tech.id} 
+                className={`bg-white rounded-2xl p-6 flex flex-col justify-between transition-all duration-300 relative ${
+                  isAdded
+                    ? 'border-2 border-emerald-500 bg-emerald-50/20 shadow-sm ring-1 ring-emerald-500/10'
+                    : 'border border-gray-100 hover:shadow-md'
+                }`}
+              >
                 <div>
                   <div className="flex justify-between items-start mb-4">
                     <div className="p-1 bg-gray-50 rounded-lg">
@@ -125,11 +133,10 @@ const TechDashboard = () => {
                   </div>
                   <button
                     onClick={() => handleAddToStack(tech)}
-                    disabled={isAdded}
                     className={`w-full h-11 text-sm font-semibold rounded-xl transition-all cursor-pointer ${
                       isAdded
-                        ? 'bg-emerald-50 text-emerald-600 border border-emerald-200 cursor-not-allowed'
-                        : `bg-gradient-to-r ${themeGradient} text-white hover:opacity-90 shadow-sm`
+                        ? 'bg-emerald-50 text-emerald-600 border border-emerald-200 hover:bg-emerald-100/50'
+                        : 'bg-black text-white hover:bg-gray-800 shadow-sm'
                     }`}
                   >
                     {isAdded ? '✓ Added to Stack' : 'Add to Stack'}
@@ -144,10 +151,9 @@ const TechDashboard = () => {
           <div>
             <h3 className="text-2xl font-bold text-gray-900 tracking-tight">Your Stack</h3>
             <p className="text-sm text-gray-400 mt-1 font-normal">
-              {selectedStack.length === 0 
-                ? 'No technologies selected yet.' 
-                : `${selectedStack.length} Technology Selected`
-              }
+              {selectedStack.length === 0
+                ? "No technology selected"
+                : `${selectedStack.length} selected`}
             </p>
 
             <div className="mt-6 flex flex-col gap-3">
@@ -171,7 +177,13 @@ const TechDashboard = () => {
                       onClick={() => handleRemoveItem(item)}
                       className="text-gray-400 hover:text-red-500 p-1 rounded-md hover:bg-gray-50 transition-colors cursor-pointer"
                     >
-                      <svg xmlns="http://w3.org" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <svg
+                        xmlns="http://w3.org"
+                        className="h-5 w-5"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
                       </svg>
                     </button>
