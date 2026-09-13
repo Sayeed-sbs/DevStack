@@ -48,6 +48,7 @@ const TechDashboard = () => {
       });
   }, []);
 
+
   const handleAddToStack = (tech) => {
     const found = selectedStack.find((item) => item.id === tech.id);
     if (found) {
@@ -58,15 +59,18 @@ const TechDashboard = () => {
     toast.success(`${tech.name} added`);
   };
 
+
   const handleRemoveItem = (tech) => {
     setSelectedStack(selectedStack.filter((item) => item.id !== tech.id));
     toast.info(`${tech.name} removed`);
   };
 
+
   const handleClearAll = () => {
     setSelectedStack([]);
     toast.warn("Stack cleared");
   };
+
 
   if (isLoading) {
     return (
@@ -76,6 +80,8 @@ const TechDashboard = () => {
       </div>
     );
   }
+
+
     return (
     <div id="technologies" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
       
@@ -96,6 +102,7 @@ const TechDashboard = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 lg:col-span-3 gap-6">
           {techList.map((tech) => {
             const isAdded = selectedStack.some((item) => item.id === tech.id);
+
             return (
               <div 
                 key={tech.id} 
@@ -103,8 +110,8 @@ const TechDashboard = () => {
                   isAdded
                     ? 'border-2 border-emerald-500 bg-emerald-50/20 shadow-sm ring-1 ring-emerald-500/10'
                     : 'border border-gray-100 hover:shadow-md'
-                }`}
-              >
+                }`}>
+
                 <div>
                   <div className="flex justify-between items-start mb-4">
                     <div className="h-10 w-10 flex items-center justify-center rounded-xl bg-gray-50 p-1 border border-gray-100 shadow-inner">
@@ -130,15 +137,17 @@ const TechDashboard = () => {
                       ★ {tech.rating}
                     </span>
                   </div>
+
                   <button
                     onClick={() => handleAddToStack(tech)}
                     className={`w-full h-11 text-sm font-semibold rounded-xl transition-all cursor-pointer ${
                       isAdded
                         ? 'bg-emerald-50 text-emerald-600 border border-emerald-200 hover:bg-emerald-100/50'
                         : 'bg-black text-white hover:bg-gray-800 shadow-sm'
-                    }`}
-                  >
+                    }`}>
+
                     {isAdded ? '✓ Added to Stack' : 'Add to Stack'}
+
                   </button>
                 </div>
               </div>
@@ -167,6 +176,7 @@ const TechDashboard = () => {
                       <div className="h-10 w-10 flex items-center justify-center rounded-lg bg-gray-50 p-1">
                         <img src={localIcons[item.id]} alt={item.name} className="h-8 w-8 object-contain" />
                       </div>
+                      
                       <div>
                         <h4 className="text-sm font-bold text-gray-900 leading-tight">{item.name}</h4>
                         <p className="text-[11px] text-gray-400 mt-0.5">{item.category}</p>

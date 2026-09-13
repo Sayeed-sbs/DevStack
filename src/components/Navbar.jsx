@@ -26,6 +26,7 @@ const Navbar = () => {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h7" />
                 </svg>
               </div>
+
               <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-50 p-3 shadow-xl bg-white rounded-2xl w-52 border border-gray-100 gap-2">
                 {navItems.map((item) => (
                   <li key={item.id}>
@@ -43,6 +44,7 @@ const Navbar = () => {
                   </li>
                 ))}
               </ul>
+
             </div>
           </div>
 
@@ -51,6 +53,7 @@ const Navbar = () => {
               <img src={logoText} alt="DevStack" className="h-8 w-auto object-contain" />
             </a>
           </div>
+
 
           <div className="navbar-center hidden lg:flex">
             <ul className="flex items-center gap-8 text-[15px]">
@@ -84,9 +87,11 @@ const Navbar = () => {
             </button>
           </div>
 
+
         </div>
       </div>
     </div>
+    
   );
 };
 

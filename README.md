@@ -15,10 +15,7 @@ This is a web application, where developers can look at different programming to
 - Live Toast Alerts: Shows real-time pop-up notifications when an item is added, when someone tries to add a duplicate item, or when the stack is cleared.
 - Fully Responsive Grid Layout: The entire page structure smoothly scales down from a wide desktop split-screen view into a single-column layout for small mobile screens.
 
-
-
---------------------------------------------------------------------------------------------------------------------------------------
-
+------------------------------------------------------------------------------------------------------------------
 
 
 ## React Questions and Answers
