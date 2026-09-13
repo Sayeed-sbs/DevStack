@@ -7,16 +7,18 @@ const Footer = () => {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 pb-12">
           
-          <div className="lg:col-span-2 flex flex-col gap-4 text-center md:text-left">
+          <div className="lg:col-span-2 flex flex-col gap-4 text-center md:text-left items-center md:items-start">
             <a href="#home" className="flex items-center justify-center md:justify-start">
               <img src={logoText} alt="DevStack" className="h-8 w-auto object-contain" />
             </a>
-            <p className="text-sm text-gray-500 leading-relaxed max-w-sm mx-auto md:mx-0">
+            <p className="text-sm text-gray-500 leading-relaxed max-w-sm text-center md:text-left mx-auto md:mx-0">
               Curated tools, technologies, and resources for developers building modern software.
             </p>
             <div className="flex items-center justify-center md:justify-start gap-4 mt-2 text-gray-500">
               <a href="https://github.com" target="_blank" rel="noreferrer" className="hover:text-pink-600 transition-colors text-sm font-medium">GitHub</a>
+              <span className="text-gray-300 hidden md:inline">•</span>
               <a href="https://twitter.com" target="_blank" rel="noreferrer" className="hover:text-pink-600 transition-colors text-sm font-medium">Twitter</a>
+              <span className="text-gray-300 hidden md:inline">•</span>
               <a href="https://linkedin.com" target="_blank" rel="noreferrer" className="hover:text-pink-600 transition-colors text-sm font-medium">LinkedIn</a>
             </div>
           </div>

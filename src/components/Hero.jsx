@@ -26,12 +26,13 @@ const Hero = () => {
               >
                 Explore Technologies
               </a>
-              <a 
-                href="#about"
-                className="h-12 px-6 flex items-center justify-center text-[15px] font-semibold text-gray-700 rounded-xl border border-gray-200 hover:border-transparent hover:text-white hover:bg-gradient-to-r hover:from-orange-500 hover:via-pink-500 hover:to-violet-600 transition-all duration-300 cursor-pointer"
-              >
-                Learn More
-              </a>
+            <a 
+              href="#about"
+              className="h-12 px-6 flex items-center justify-center text-[15px] font-semibold text-gray-700 rounded-xl border border-gray-200 bg-transparent hover:border-black hover:text-gray-100 hover:bg-black transition-all duration-300 cursor-pointer"
+            >
+              Learn More
+            </a>
+
             </div>
           </div>
 

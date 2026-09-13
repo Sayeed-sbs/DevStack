@@ -1,8 +1,8 @@
-# the name of this project is DevStack
+# The name of this project is DevStack
 
 This is a web application, where developers can look at different programming tools, compare them, and choose items to build their own custom layout stacks.
 
-## Technology that I use
+## Technology that I used
 - React.js 
 - Vite 
 - Tailwind CSS

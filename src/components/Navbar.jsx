@@ -4,6 +4,8 @@ import logoText from '/src/assets/logo-text.png';
 const Navbar = () => {
   const [activeTab, setActiveTab] = useState('home');
 
+  const themeGradient = "from-orange-500 via-pink-500 to-violet-600";
+
   const navItems = [
     { id: 'home', label: 'Home' },
     { id: 'technologies', label: 'Technologies' },
@@ -15,9 +17,9 @@ const Navbar = () => {
   return (
     <div className="sticky top-0 z-50 w-full border-b border-gray-100 bg-white/90 backdrop-blur-md shadow-sm">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="navbar min-h-[72px] p-0 justify-between">
+        <div className="navbar min-h-[72px] p-0 relative flex items-center justify-between">
           
-          <div className="navbar-start w-auto gap-2">
+          <div className="flex items-center lg:navbar-start w-auto">
             <div className="dropdown lg:hidden">
               <div tabIndex={0} role="button" className="btn btn-ghost btn-circle text-gray-700">
                 <svg xmlns="http://w3.org" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -42,7 +44,9 @@ const Navbar = () => {
                 ))}
               </ul>
             </div>
+          </div>
 
+          <div className="absolute left-1/2 transform -translate-x-1/2 lg:static lg:transform-none lg:navbar-start lg:w-auto">
             <a href="#home" onClick={() => setActiveTab('home')} className="flex items-center">
               <img src={logoText} alt="DevStack" className="h-8 w-auto object-contain" />
             </a>
@@ -71,11 +75,11 @@ const Navbar = () => {
             </ul>
           </div>
 
-          <div className="navbar-end w-auto gap-3">
-            <button className="h-10 px-5 text-[14px] font-semibold text-gray-700 rounded-full border border-gray-200 hover:border-transparent hover:text-white hover:bg-gradient-to-r hover:from-orange-500 hover:via-pink-500 hover:to-violet-600 transition-all duration-300 cursor-pointer">
+          <div className="navbar-end w-auto gap-4">
+            <button className="h-10 px-4 text-[14px] font-semibold text-gray-600 hover:text-white hover:bg-black rounded-full transition-all duration-300 bg-transparent border-none cursor-pointer">
               Sign In
             </button>
-            <button className="h-10 px-5 text-[14px] font-semibold text-gray-700 rounded-full border border-gray-200 hover:border-transparent hover:text-white hover:bg-gradient-to-r hover:from-orange-500 hover:via-pink-500 hover:to-violet-600 transition-all duration-300 cursor-pointer">
+            <button className={`h-10 px-5 text-[14px] font-semibold text-white rounded-full bg-gradient-to-r ${themeGradient} hover:opacity-90 transition-opacity shadow-sm cursor-pointer`}>
               Sign Up
             </button>
           </div>
