@@ -1,6 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import { toast } from 'react-toastify';
 
+import reactIcon from '/src/assets/react.svg';
+import vueIcon from '/src/assets/vue.svg';
+import svelteIcon from '/src/assets/svelte.svg';
+import nextjsIcon from '/src/assets/nextjs.svg';
+import nodejsIcon from '/src/assets/nodejs.svg';
+import postgresqlIcon from '/src/assets/postgresql.svg';
+import redisIcon from '/src/assets/redis.svg';
+import javascriptIcon from '/src/assets/javascript.svg';
+import typescriptIcon from '/src/assets/typescript.svg';
+import javaIcon from '/src/assets/java.svg';
+import tailwindIcon from '/src/assets/tailwind.svg';
+import dockerIcon from '/src/assets/docker.svg';
+
 const TechDashboard = () => {
   const [techList, setTechList] = useState([]);
   const [selectedStack, setSelectedStack] = useState([]);
@@ -8,33 +21,19 @@ const TechDashboard = () => {
 
   const themeGradient = "from-orange-500 via-pink-500 to-violet-600";
 
-  const svgIcons = {
-    react: (
-      <svg viewBox="-11.5 -10.23174 23 20.46348" className="h-10 w-10 text-cyan-400 fill-none stroke-current">
-        <circle cx="0" cy="0" r="2.05" className="fill-current"/>
-        <g stroke="currentColor">
-          <ellipse rx="11" ry="4.2"/>
-          <ellipse rx="11" ry="4.2" transform="rotate(60)"/>
-          <ellipse rx="11" ry="4.2" transform="rotate(120)"/>
-        </g>
-      </svg>
-    ),
-    vue: (
-      <svg viewBox="0 0 256 221" className="h-10 w-10">
-        <path fill="#41B883" d="M204.8 0H256L128 220.8L0 0h51.2L128 132.48L204.8 0z"/>
-        <path fill="#35495E" d="M51.2 0H96l32 55.2L160 0h44.8L128 132.48L51.2 0z"/>
-      </svg>
-    ),
-    svelte: <svg viewBox="0 0 24 24" className="h-10 w-10 text-orange-600 fill-current"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5-10-5-10 5z"/></svg>,
-    nextjs: <svg viewBox="0 0 24 24" className="h-10 w-10 text-black fill-current"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14.5v-9L17 12l-6 4.5z"/></svg>,
-    nodejs: <svg viewBox="0 0 24 24" className="h-10 w-10 text-green-600 fill-current"><path d="M12 2L3 7v10l9 5 9-5V7l-9-5zm-1 14.5v-9L17 12l-6 4.5z"/></svg>,
-    postgresql: <svg viewBox="0 0 24 24" className="h-10 w-10 text-blue-600 fill-current"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 15c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5z"/></svg>,
-    redis: <svg viewBox="0 0 24 24" className="h-10 w-10 text-red-600 fill-current"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-2 10H7v-2h10v2z"/></svg>,
-    javascript: <svg viewBox="0 0 24 24" className="h-10 w-10 text-amber-400 fill-current"><path d="M3 3v18h18V3H3zm14.5 12h-2v3h-2v-3h-2v-2h6v2z"/></svg>,
-    typescript: <svg viewBox="0 0 24 24" className="h-10 w-10 text-blue-500 fill-current"><path d="M3 3v18h18V3H3zm11.5 11h-2v4h-2v-4h-2v-2h6v2z"/></svg>,
-    java: <svg viewBox="0 0 24 24" className="h-10 w-10 text-orange-500 fill-current"><path d="M2 21h20v-2H2v2zM20 8h-2V6h2v2zm-4 4h-2v-2h2v2zm4 0h-2v-2h2v2zM6 12h2v2H6v-2zm0-4h2v2H6V8z"/></svg>,
-    tailwind: <svg viewBox="0 0 24 24" className="h-10 w-10 text-sky-400 fill-current"><path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9-4.03-9-9-9zm0 14.5c-3.04 0-5.5-2.46-5.5-5.5S8.96 6.5 12 6.5s5.5 2.46 5.5 5.5-2.46 5.5-5.5 5.5z"/></svg>,
-    docker: <svg viewBox="0 0 24 24" className="h-10 w-10 text-blue-500 fill-current"><path d="M19 4H5c-1.11 0-2 .9-2 2v12c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm-2 10h-4v-4h4v4z"/></svg>
+  const localIcons = {
+    react: reactIcon,
+    vue: vueIcon,
+    svelte: svelteIcon,
+    nextjs: nextjsIcon,
+    nodejs: nodejsIcon,
+    postgresql: postgresqlIcon,
+    redis: redisIcon,
+    javascript: javascriptIcon,
+    typescript: typescriptIcon,
+    java: javaIcon,
+    tailwind: tailwindIcon,
+    docker: dockerIcon
   };
 
   useEffect(() => {
@@ -77,7 +76,7 @@ const TechDashboard = () => {
       </div>
     );
   }
-  return (
+    return (
     <div id="technologies" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
       
       <div className="mb-10 text-center lg:text-left">
@@ -108,8 +107,8 @@ const TechDashboard = () => {
               >
                 <div>
                   <div className="flex justify-between items-start mb-4">
-                    <div className="p-1 bg-gray-50 rounded-lg">
-                      {svgIcons[tech.id] || svgIcons.react}
+                    <div className="h-10 w-10 flex items-center justify-center rounded-xl bg-gray-50 p-1 border border-gray-100 shadow-inner">
+                      <img src={localIcons[tech.id]} alt={tech.name} className="h-8 w-8 object-contain" />
                     </div>
                     <span className="text-[11px] font-semibold tracking-wide uppercase px-2 py-0.5 rounded-md bg-blue-50 text-blue-600">
                       {tech.badge}
@@ -165,8 +164,8 @@ const TechDashboard = () => {
                 selectedStack.map((item) => (
                   <div key={item.id} className="flex items-center justify-between p-4 bg-white border border-gray-100 rounded-xl shadow-sm">
                     <div className="flex items-center gap-3">
-                      <div className="h-10 w-10 flex items-center justify-center scale-75">
-                        {svgIcons[item.id]}
+                      <div className="h-10 w-10 flex items-center justify-center rounded-lg bg-gray-50 p-1">
+                        <img src={localIcons[item.id]} alt={item.name} className="h-8 w-8 object-contain" />
                       </div>
                       <div>
                         <h4 className="text-sm font-bold text-gray-900 leading-tight">{item.name}</h4>
